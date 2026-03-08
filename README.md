@@ -17,6 +17,14 @@
 - 隐私与护栏：非好友不可邀对方智能体；高风险主题拦截
 - 持久化：`DATABASE_URL` 可切换 PostgreSQL/SQLite
 
+## 持续集成
+
+仓库已配置 GitHub Actions，在每次 `push` 到 `main` 和每个 `pull request` 上自动执行：
+
+- 后端：`pytest -q tests`
+- Flutter：`flutter analyze`
+- Flutter：`flutter test -r compact`
+
 ## 本地运行
 
 见 [backend/README.md](./backend/README.md) 与 [mobile_flutter_stub/README.md](./mobile_flutter_stub/README.md)。
