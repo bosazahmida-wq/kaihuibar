@@ -1,0 +1,35 @@
+.DS_Store
+*.log
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pycache/
+
+# Local databases and virtual environments
+*.db
+.venv/
+backend/.venv/
+
+# Flutter / Dart generated files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+mobile_flutter_stub/.dart_tool/
+mobile_flutter_stub/.bundle/
+mobile_flutter_stub/bin/
+mobile_flutter_stub/build/
+mobile_flutter_stub/macos/Pods/
+mobile_flutter_stub/vendor/
+mobile_flutter_stub/.flutter-plugins-dependencies
+mobile_flutter_stub/macos/Flutter/ephemeral/
+mobile_flutter_stub/ios/Flutter/ephemeral/
+mobile_flutter_stub/linux/flutter/ephemeral/
+mobile_flutter_stub/windows/flutter/ephemeral/
+
+# Local toolchains
+tools/

@@ -1,0 +1,8 @@
+#!/bin/zsh
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+export BUNDLE_GEMFILE="$SCRIPT_DIR/Gemfile"
+export RUBYOPT="-rlogger ${RUBYOPT:-}"
+
+exec "$SCRIPT_DIR/bin/pod" "$@"
