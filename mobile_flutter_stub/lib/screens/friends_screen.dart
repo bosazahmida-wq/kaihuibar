@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/meeting_models.dart';
 import '../services/api_client.dart';
 import '../services/session_state.dart';
-import '../theme/notion_theme.dart';
+import '../theme/premium_theme.dart';
 import '../widgets/notion_widgets.dart';
 
 class FriendsScreen extends StatefulWidget {
@@ -316,9 +316,9 @@ class _SearchResultRow extends StatelessWidget {
 
     late final Widget action;
     if (relationshipStatus == 'accepted') {
-      action = const Text('已是好友', style: TextStyle(color: NotionPalette.textSecondary));
+      action = const Text('已是好友', style: TextStyle(color: PremiumPalette.textSecondary));
     } else if (relationshipStatus == 'pending' && direction == 'outgoing') {
-      action = const Text('已发送', style: TextStyle(color: NotionPalette.textSecondary));
+      action = const Text('已发送', style: TextStyle(color: PremiumPalette.textSecondary));
     } else if (relationshipStatus == 'pending' && direction == 'incoming' && onAccept != null) {
       action = TextButton(onPressed: onAccept, child: const Text('通过申请'));
     } else {
@@ -330,7 +330,7 @@ class _SearchResultRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Row(
         children: [
@@ -339,7 +339,7 @@ class _SearchResultRow extends StatelessWidget {
             height: 38,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: NotionPalette.surface,
+              color: PremiumPalette.surface,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
@@ -358,7 +358,7 @@ class _SearchResultRow extends StatelessWidget {
                   agent == null
                       ? '对方还没有公开智能体'
                       : List<String>.from((agent['domain_tags'] as List?) ?? const []).join(' · ').ifEmpty('暂无场景标签'),
-                  style: const TextStyle(color: NotionPalette.textSecondary, fontSize: 13),
+                  style: const TextStyle(color: PremiumPalette.textSecondary, fontSize: 13),
                 ),
               ],
             ),
@@ -387,7 +387,7 @@ class _FriendRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Row(
         children: [
@@ -396,7 +396,7 @@ class _FriendRow extends StatelessWidget {
             height: 38,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: NotionPalette.surface,
+              color: PremiumPalette.surface,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
@@ -413,12 +413,12 @@ class _FriendRow extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   friend.domainTags.isEmpty ? '暂无场景标签' : friend.domainTags.join(' · '),
-                  style: const TextStyle(color: NotionPalette.textSecondary, fontSize: 13),
+                  style: const TextStyle(color: PremiumPalette.textSecondary, fontSize: 13),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   friendshipDirectionText(friend.direction),
-                  style: const TextStyle(color: NotionPalette.textSecondary, fontSize: 12),
+                  style: const TextStyle(color: PremiumPalette.textSecondary, fontSize: 12),
                 ),
               ],
             ),
@@ -430,7 +430,7 @@ class _FriendRow extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                color: NotionPalette.surface,
+                color: PremiumPalette.surface,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(friendshipStatusText(friend.status)),

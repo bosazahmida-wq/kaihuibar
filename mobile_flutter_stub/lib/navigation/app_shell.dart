@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:animations/animations.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.child});
@@ -27,18 +30,43 @@ class AppShell extends StatelessWidget {
     final currentIndex = _indexOf(location);
 
     return Scaffold(
-      body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) => context.go(_tabs[index].$1),
-        items: [
-          for (final tab in _tabs)
-            BottomNavigationBarItem(
-              icon: Icon(tab.$2),
-              activeIcon: Icon(tab.$3),
-              label: tab.$4,
+      extendBody: true, // Let body extend behind bottom nav
+      body: PageTransitionSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation, secondaryAnimation) {
+          return FadeThroughTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
+          );
+        },
+        child: KeyedSubtree(
+          key: ValueKey(location),
+          child: child,
+        ),
+      ),
+      bottomNavigationBar: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            color: Theme.of(context).bottomNavigationBarTheme.backgroundColor?.withValues(alpha: 0.8) ??
+                Colors.white.withValues(alpha: 0.8),
+            child: BottomNavigationBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent, // Let Container handle color and opacity
+              currentIndex: currentIndex,
+              onTap: (index) => context.go(_tabs[index].$1),
+              items: [
+                for (final tab in _tabs)
+                  BottomNavigationBarItem(
+                    icon: Icon(tab.$2),
+                    activeIcon: Icon(tab.$3),
+                    label: tab.$4,
+                  ),
+              ],
             ),
-        ],
+          ),
+        ),
       ),
     );
   }

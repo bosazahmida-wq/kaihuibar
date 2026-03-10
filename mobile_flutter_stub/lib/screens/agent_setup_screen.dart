@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import '../models/agent_models.dart';
 import '../services/api_client.dart';
 import '../services/session_state.dart';
-import '../theme/notion_theme.dart';
+import '../theme/premium_theme.dart';
 import '../widgets/notion_widgets.dart';
 
 class AgentSetupScreen extends StatefulWidget {
@@ -450,13 +450,13 @@ class _AgentSetupScreenState extends State<AgentSetupScreen> {
                           Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: NotionPalette.surface,
+                              color: PremiumPalette.surface,
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: NotionPalette.border),
+                              border: Border.all(color: PremiumPalette.border),
                             ),
                             child: const Text(
                               '评分说明：1 非常不像我，3 说不准，5 非常像我。',
-                              style: TextStyle(color: NotionPalette.textSecondary),
+                                style: TextStyle(color: PremiumPalette.textSecondary),
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -492,7 +492,7 @@ class _AgentSetupScreenState extends State<AgentSetupScreen> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: NotionPalette.border),
+                                border: Border.all(color: PremiumPalette.border),
                               ),
                               child: Text(_assessmentSummary!),
                             ),
@@ -572,13 +572,13 @@ class _AgentSetupScreenState extends State<AgentSetupScreen> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: NotionPalette.surface,
+                        color: PremiumPalette.surface,
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: NotionPalette.border),
+                        border: Border.all(color: PremiumPalette.border),
                       ),
                       child: Text(
                         _personaPreview(),
-                        style: const TextStyle(color: NotionPalette.textSecondary),
+                        style: const TextStyle(color: PremiumPalette.textSecondary),
                       ),
                     ),
                     const SizedBox(height: 14),
@@ -614,11 +614,11 @@ class _AgentSetupScreenState extends State<AgentSetupScreen> {
                           for (final tag in currentScenes)
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: NotionPalette.surface,
-                                borderRadius: BorderRadius.circular(999),
-                                border: Border.all(color: NotionPalette.border),
-                              ),
+                                decoration: BoxDecoration(
+                                  color: PremiumPalette.surface,
+                                  borderRadius: BorderRadius.circular(999),
+                                  border: Border.all(color: PremiumPalette.border),
+                                ),
                               child: Text(tag),
                             ),
                         ],
@@ -626,7 +626,7 @@ class _AgentSetupScreenState extends State<AgentSetupScreen> {
                       const SizedBox(height: 12),
                       Text(
                         '${persona['helper_style'] ?? '-'} · ${persona['decision_style'] ?? persona['thinking_style'] ?? '-'} · ${persona['communication_tone'] ?? '-'}',
-                        style: const TextStyle(color: NotionPalette.textSecondary),
+                        style: const TextStyle(color: PremiumPalette.textSecondary),
                       ),
                       if ((_assessmentSummary ?? '').isNotEmpty) ...[
                         const SizedBox(height: 12),
@@ -668,7 +668,7 @@ class _AgentSetupScreenState extends State<AgentSetupScreen> {
                         Text(persona['custom_prompt'] as String),
                       ],
                       const SizedBox(height: 12),
-                      Text('校准轮次: ${notes.length}', style: const TextStyle(color: NotionPalette.textSecondary)),
+                      Text('校准轮次: ${notes.length}', style: const TextStyle(color: PremiumPalette.textSecondary)),
                     ],
                   ),
                 ),
@@ -757,7 +757,7 @@ class _AssessmentScoreBoard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -800,7 +800,7 @@ class _AssessmentScoreRow extends StatelessWidget {
             Expanded(child: Text(label)),
             Text(
               score.toStringAsFixed(1),
-              style: const TextStyle(color: NotionPalette.textSecondary),
+              style: const TextStyle(color: PremiumPalette.textSecondary),
             ),
           ],
         ),
@@ -810,8 +810,8 @@ class _AssessmentScoreRow extends StatelessWidget {
           child: LinearProgressIndicator(
             value: normalized,
             minHeight: 8,
-            backgroundColor: NotionPalette.surface,
-            valueColor: const AlwaysStoppedAnimation<Color>(NotionPalette.accent),
+            backgroundColor: PremiumPalette.surface,
+            valueColor: const AlwaysStoppedAnimation<Color>(PremiumPalette.accent),
           ),
         ),
       ],
@@ -837,7 +837,7 @@ class _AssessmentQuestionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

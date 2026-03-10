@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../services/api_client.dart';
 import '../services/session_state.dart';
-import '../theme/notion_theme.dart';
+import '../theme/premium_theme.dart';
 import '../widgets/notion_widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -200,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 6),
                     Text(
                       '时区: ${_state.currentTimezone ?? 'Asia/Shanghai'}',
-                      style: const TextStyle(color: NotionPalette.textSecondary),
+                      style: const TextStyle(color: PremiumPalette.textSecondary),
                     ),
                     const SizedBox(height: 12),
                     SizedBox(
@@ -255,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 8),
                     Text(
                       '当前地址: ${_state.serverBaseUrl}',
-                      style: const TextStyle(color: NotionPalette.textSecondary),
+                      style: const TextStyle(color: PremiumPalette.textSecondary),
                     ),
                   ],
                 ),
@@ -301,7 +301,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const Spacer(),
                         Text(
                           _temperature.toStringAsFixed(1),
-                          style: const TextStyle(color: NotionPalette.textSecondary),
+                          style: const TextStyle(color: PremiumPalette.textSecondary),
                         ),
                       ],
                     ),
@@ -346,7 +346,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       _state.hasAiConfig
                           ? '当前模型: ${_state.aiModel} · 温度: ${_state.aiTemperature.toStringAsFixed(1)} · 密钥: ${_state.maskedApiKey()}'
                           : '尚未配置 AI 接口，将使用本地回退策略。',
-                      style: const TextStyle(color: NotionPalette.textSecondary),
+                      style: const TextStyle(color: PremiumPalette.textSecondary),
                     ),
                   ],
                 ),
@@ -384,7 +384,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     const Text(
                       '适合重新演练完整链路，验证首次引导和列表刷新。',
-                      style: TextStyle(color: NotionPalette.textSecondary),
+                      style: TextStyle(color: PremiumPalette.textSecondary),
                     ),
                     const SizedBox(height: 12),
                     OutlinedButton(

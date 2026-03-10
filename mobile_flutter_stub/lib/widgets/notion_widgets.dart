@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/notion_theme.dart';
+import '../theme/premium_theme.dart';
 
 class NotionSectionCard extends StatelessWidget {
   const NotionSectionCard({
@@ -36,7 +36,7 @@ class NotionSectionCard extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 4),
                           child: Text(
                             subtitle!,
-                            style: const TextStyle(color: NotionPalette.textSecondary, fontSize: 13),
+                            style: const TextStyle(color: PremiumPalette.textSecondary, fontSize: 13),
                           ),
                         ),
                     ],
@@ -65,13 +65,13 @@ class StatusText extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: NotionPalette.surface,
-        border: Border.all(color: NotionPalette.border),
+        color: PremiumPalette.surface,
+        border: Border.all(color: PremiumPalette.border),
         borderRadius: BorderRadius.circular(10),
       ),
       child: SelectableText(
         text,
-        style: const TextStyle(fontSize: 13, color: NotionPalette.textSecondary),
+        style: const TextStyle(fontSize: 13, color: PremiumPalette.textSecondary),
       ),
     );
   }
@@ -95,19 +95,19 @@ class MetricTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: NotionPalette.border),
+        color: PremiumPalette.surface,
+        border: Border.all(color: PremiumPalette.border),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 12, color: NotionPalette.textSecondary)),
+          Text(label, style: const TextStyle(fontSize: 12, color: PremiumPalette.textSecondary)),
           const SizedBox(height: 8),
           Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
           if (caption != null) ...[
             const SizedBox(height: 4),
-            Text(caption!, style: const TextStyle(fontSize: 12, color: NotionPalette.textSecondary)),
+            Text(caption!, style: const TextStyle(fontSize: 12, color: PremiumPalette.textSecondary)),
           ],
         ],
       ),
@@ -122,13 +122,13 @@ class ActionTile extends StatelessWidget {
     required this.title,
     required this.description,
     required this.icon,
-    required this.onTap,
+    this.onTap,
   });
 
   final String title;
   final String description;
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +138,8 @@ class ActionTile extends StatelessWidget {
       child: Ink(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: NotionPalette.border),
+          color: PremiumPalette.surface,
+          border: Border.all(color: PremiumPalette.border),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -148,10 +148,11 @@ class ActionTile extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: NotionPalette.surface,
+                color: PremiumPalette.bg,
+                border: Border.all(color: PremiumPalette.border),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(icon, size: 18, color: NotionPalette.textPrimary),
+              child: Icon(icon, size: 18, color: PremiumPalette.textPrimary),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -160,11 +161,11 @@ class ActionTile extends StatelessWidget {
                 children: [
                   Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
                   const SizedBox(height: 4),
-                  Text(description, style: const TextStyle(fontSize: 13, color: NotionPalette.textSecondary)),
+                  Text(description, style: const TextStyle(fontSize: 13, color: PremiumPalette.textSecondary)),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: NotionPalette.textSecondary),
+            const Icon(Icons.chevron_right, color: PremiumPalette.textSecondary),
           ],
         ),
       ),
@@ -189,8 +190,8 @@ class EmptyState extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: NotionPalette.border),
+        color: PremiumPalette.surface,
+        border: Border.all(color: PremiumPalette.border),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -198,7 +199,7 @@ class EmptyState extends StatelessWidget {
         children: [
           Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
           const SizedBox(height: 6),
-          Text(description, style: const TextStyle(color: NotionPalette.textSecondary)),
+          Text(description, style: const TextStyle(color: PremiumPalette.textSecondary)),
         ],
       ),
     );

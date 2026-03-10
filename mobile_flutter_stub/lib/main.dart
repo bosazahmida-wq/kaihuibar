@@ -8,7 +8,7 @@ import 'screens/home_screen.dart';
 import 'screens/meeting_screen.dart';
 import 'screens/profile_screen.dart';
 import 'services/session_state.dart';
-import 'theme/notion_theme.dart';
+import 'theme/premium_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +41,7 @@ class KaihuiBarApp extends StatelessWidget {
       title: '开会吧',
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: buildNotionTheme(),
+      theme: buildPremiumTheme(),
     );
   }
 }

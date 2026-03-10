@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../models/meeting_models.dart';
 import '../services/api_client.dart';
 import '../services/session_state.dart';
-import '../theme/notion_theme.dart';
+import '../theme/premium_theme.dart';
+import '../widgets/bouncy_button.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../widgets/notion_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -139,50 +141,56 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: MetricTile(
                               label: '智能体',
                               value: _state.hasAgent ? '1' : '0',
-                              caption: _state.hasAgent ? '已完成校准' : '待创建',
-                            ),
-                          ),
+                               caption: _state.hasAgent ? '已完成校准' : '待创建',
+                             ),
+                           ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.2, end: 0),
                           const SizedBox(width: 10),
                           Expanded(
                             child: MetricTile(
                               label: '好友',
                               value: '${_state.friends.length}',
-                              caption: _state.hasFriend ? '可邀请入会' : '待建立关系',
-                            ),
-                          ),
+                               caption: _state.hasFriend ? '可邀请入会' : '待建立关系',
+                             ),
+                           ).animate().fadeIn(duration: 400.ms, delay: 100.ms).slideY(begin: 0.2, end: 0),
                           const SizedBox(width: 10),
                           Expanded(
                             child: MetricTile(
                               label: '会议',
                               value: '${_state.meetings.length}',
-                              caption: _state.meetings.isEmpty ? '暂无历史' : '已有总结',
-                            ),
-                          ),
+                               caption: _state.meetings.isEmpty ? '暂无历史' : '已有总结',
+                             ),
+                           ).animate().fadeIn(duration: 400.ms, delay: 200.ms).slideY(begin: 0.2, end: 0),
                         ],
                       ),
                       const SizedBox(height: 12),
                       StatusText(_syncCaption()),
                       const SizedBox(height: 12),
-                      ActionTile(
-                        title: '继续完善智能体',
-                        description: '更新人设、风格和校准话术，让协作输出更稳定。',
-                        icon: Icons.smart_toy_outlined,
-                        onTap: () => context.go('/agents'),
-                      ),
+                      BouncyButton(
+                        onPressed: () => context.go('/agents'),
+                        child: const ActionTile(
+                          title: '继续完善智能体',
+                          description: '更新人设、风格和校准话术，让协作输出更稳定。',
+                          icon: Icons.smart_toy_outlined,
+                        ),
+                      ).animate().fadeIn(duration: 400.ms, delay: 300.ms).slideX(begin: 0.1, end: 0),
                       const SizedBox(height: 8),
-                      ActionTile(
-                        title: '邀请好友一起协作',
-                        description: '建立轻关系链后，就能把对方智能体一起拉进会议。',
-                        icon: Icons.group_outlined,
-                        onTap: () => context.go('/friends'),
-                      ),
+                      BouncyButton(
+                        onPressed: () => context.go('/friends'),
+                        child: const ActionTile(
+                          title: '邀请好友一起协作',
+                          description: '建立轻关系链后，就能把对方智能体一起拉进会议。',
+                          icon: Icons.group_outlined,
+                        ),
+                      ).animate().fadeIn(duration: 400.ms, delay: 400.ms).slideX(begin: 0.1, end: 0),
                       const SizedBox(height: 8),
-                      ActionTile(
-                        title: '发起一次会议',
-                        description: '选择模式，快速拿到主持总结与下一步建议。',
-                        icon: Icons.forum_outlined,
-                        onTap: () => context.go('/meetings'),
-                      ),
+                      BouncyButton(
+                        onPressed: () => context.go('/meetings'),
+                        child: const ActionTile(
+                          title: '发起一次会议',
+                          description: '选择模式，快速拿到主持总结与下一步建议。',
+                          icon: Icons.forum_outlined,
+                        ),
+                      ).animate().fadeIn(duration: 400.ms, delay: 500.ms).slideX(begin: 0.1, end: 0),
                     ],
                   ),
                 ),
@@ -205,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 6),
                             Text(
                               '${meetingModeText(latestMeeting.mode)} · ${meetingStatusText(latestMeeting.status)}',
-                              style: const TextStyle(color: NotionPalette.textSecondary),
+                              style: const TextStyle(color: PremiumPalette.textSecondary),
                             ),
                             if (latestMeeting.summaryText != null) ...[
                               const SizedBox(height: 10),
@@ -213,12 +221,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 latestMeeting.summaryText!,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(color: NotionPalette.textSecondary),
+                                style: const TextStyle(color: PremiumPalette.textSecondary),
                               ),
                             ],
                           ],
                         ),
-                ),
+                ).animate().fadeIn(duration: 500.ms, delay: 600.ms).scaleXY(begin: 0.95, end: 1),
                 const SizedBox(height: 12),
                 NotionSectionCard(
                   title: '协作网络',
@@ -237,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 36,
                               height: 36,
                               decoration: BoxDecoration(
-                                color: NotionPalette.surface,
+                                color: PremiumPalette.surface,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               alignment: Alignment.center,
@@ -257,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     latestFriend.domainTags.isEmpty
                                         ? '暂无公开场景标签'
                                         : latestFriend.domainTags.join(' · '),
-                                    style: const TextStyle(color: NotionPalette.textSecondary),
+                                    style: const TextStyle(color: PremiumPalette.textSecondary),
                                   ),
                                 ],
                               ),
@@ -267,13 +275,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: NotionPalette.border),
+                                border: Border.all(color: PremiumPalette.border),
                               ),
                               child: Text(friendshipStatusText(latestFriend.status)),
                             ),
                           ],
                         ),
-                ),
+                ).animate().fadeIn(duration: 500.ms, delay: 700.ms).scaleXY(begin: 0.95, end: 1),
               ],
             ),
           ),

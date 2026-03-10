@@ -7,7 +7,8 @@ import 'package:flutter/services.dart';
 import '../models/meeting_models.dart';
 import '../services/api_client.dart';
 import '../services/session_state.dart';
-import '../theme/notion_theme.dart';
+import '../theme/premium_theme.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../widgets/notion_widgets.dart';
 import '../widgets/summary_card.dart';
 
@@ -395,7 +396,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
                     children: [
                       Text(
                         '${meetingModeText(meeting['mode'] as String? ?? item.mode)} · ${meetingStatusText(meeting['status'] as String? ?? item.status)}',
-                        style: const TextStyle(color: NotionPalette.textSecondary),
+                        style: const TextStyle(color: PremiumPalette.textSecondary),
                       ),
                       const SizedBox(height: 12),
                       Wrap(
@@ -510,7 +511,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
                         _state.hasAiConfig
                             ? '当前会议将优先调用 ${_state.aiModel}'
                             : '未配置外部模型，将使用本地回退策略',
-                        style: const TextStyle(color: NotionPalette.textSecondary),
+                        style: const TextStyle(color: PremiumPalette.textSecondary),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -561,7 +562,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
                             _LiveTurnRow(
                               turn: turn,
                               speakerLabel: _speakerLabel(turn.speakerId),
-                            ),
+                            ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.1, end: 0),
                             if (turn != _liveTurns.last) const SizedBox(height: 8),
                           ],
                         ],
@@ -776,7 +777,7 @@ class _PublicAgentRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -791,7 +792,7 @@ class _PublicAgentRow extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '来自 ${owner['name']}',
-                      style: const TextStyle(color: NotionPalette.textSecondary),
+                      style: const TextStyle(color: PremiumPalette.textSecondary),
                     ),
                   ],
                 ),
@@ -804,13 +805,13 @@ class _PublicAgentRow extends StatelessWidget {
           ),
           if ((description ?? '').isNotEmpty) ...[
             const SizedBox(height: 8),
-            Text(description!, style: const TextStyle(color: NotionPalette.textSecondary)),
+            Text(description!, style: const TextStyle(color: PremiumPalette.textSecondary)),
           ] else if (assessmentSummary.isNotEmpty) ...[
             const SizedBox(height: 8),
-            Text(assessmentSummary, style: const TextStyle(color: NotionPalette.textSecondary)),
+            Text(assessmentSummary, style: const TextStyle(color: PremiumPalette.textSecondary)),
           ] else if (identityBrief.isNotEmpty) ...[
             const SizedBox(height: 8),
-            Text(identityBrief, style: const TextStyle(color: NotionPalette.textSecondary)),
+            Text(identityBrief, style: const TextStyle(color: PremiumPalette.textSecondary)),
           ],
           if (domainTags.isNotEmpty) ...[
             const SizedBox(height: 8),
@@ -822,7 +823,7 @@ class _PublicAgentRow extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
-                      color: NotionPalette.surface,
+                      color: PremiumPalette.surface,
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(tag),
@@ -832,7 +833,7 @@ class _PublicAgentRow extends StatelessWidget {
           ],
         ],
       ),
-    );
+    ).animate().fadeIn(duration: 300.ms);
   }
 }
 
@@ -846,7 +847,7 @@ class _StreamingPlaceholder extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
         borderRadius: BorderRadius.circular(12),
       ),
       child: const Row(
@@ -860,7 +861,7 @@ class _StreamingPlaceholder extends StatelessWidget {
           Expanded(
             child: Text(
               '正在等待智能体开始发言...',
-              style: TextStyle(color: NotionPalette.textSecondary),
+              style: TextStyle(color: PremiumPalette.textSecondary),
             ),
           ),
         ],
@@ -894,7 +895,7 @@ class _DetailSheetShell extends StatelessWidget {
               width: 42,
               height: 4,
               decoration: BoxDecoration(
-                color: NotionPalette.border,
+                color: PremiumPalette.border,
                 borderRadius: BorderRadius.circular(999),
               ),
             ),
@@ -935,11 +936,11 @@ class _ParticipantPill extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Text(
         label,
-        style: const TextStyle(fontSize: 13, color: NotionPalette.textSecondary),
+        style: const TextStyle(fontSize: 13, color: PremiumPalette.textSecondary),
       ),
     );
   }
@@ -962,7 +963,7 @@ class _LiveTurnRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -971,7 +972,7 @@ class _LiveTurnRow extends StatelessWidget {
             '第 ${turn.roundIndex} 轮 · $speakerLabel',
             style: const TextStyle(
               fontWeight: FontWeight.w600,
-              color: NotionPalette.textSecondary,
+              color: PremiumPalette.textSecondary,
             ),
           ),
           const SizedBox(height: 8),
@@ -1000,7 +1001,7 @@ class _MeetingHistoryRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NotionPalette.border),
+        border: Border.all(color: PremiumPalette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1013,7 +1014,7 @@ class _MeetingHistoryRow extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: NotionPalette.surface,
+                  color: PremiumPalette.bg,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(meetingModeText(item.mode)),
@@ -1023,7 +1024,7 @@ class _MeetingHistoryRow extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             '${meetingStatusText(item.status)} · ${item.createdAt.replaceFirst('T', ' ').split('.').first}',
-            style: const TextStyle(color: NotionPalette.textSecondary, fontSize: 13),
+            style: const TextStyle(color: PremiumPalette.textSecondary, fontSize: 13),
           ),
           if (item.summaryText != null) ...[
             const SizedBox(height: 8),
@@ -1031,7 +1032,7 @@ class _MeetingHistoryRow extends StatelessWidget {
               item.summaryText!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(color: NotionPalette.textSecondary),
+              style: const TextStyle(color: PremiumPalette.textSecondary),
             ),
           ],
           const SizedBox(height: 8),
@@ -1045,6 +1046,6 @@ class _MeetingHistoryRow extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0);
   }
 }
